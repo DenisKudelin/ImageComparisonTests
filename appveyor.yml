@@ -17,20 +17,18 @@ environment:
 install:
   - ps: Install-Product node $env:nodejs_version x64
 
-
   # installing local npm packages
   - npm install
 
 build: off
 
 before_test:
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/set-screenresolution.ps1'))
-  - ps: Set-ScreenResolution 1920 1080
 
 test_script:
   # Output useful info for debugging.
   - node --version && npm --version
 
+  - node_modules\.bin\gulp set-screen-resolution
   - node_modules\.bin\gulp build-run
 
 # scripts to run after tests
