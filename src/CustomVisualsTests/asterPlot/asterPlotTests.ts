@@ -26,6 +26,6 @@ namespace customVisualTests {
                     name: "svg.asterPlot", // This will be mapped to ./screenshots/originals/chrome/AsterPlot/default.svg.asterPlot.1920px.baseline.png
                     elem: "svg.asterPlot"
                 });
-        }/*, [Browser.internetExplorer]*/);
+        }/*, [Browser.InternetExplorer]*/);
     });
 }
