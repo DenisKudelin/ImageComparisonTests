@@ -22,3 +22,4 @@
 /lib/**
 /screenshots/**/*.png
 !/screenshots/**/*.baseline.png
+/browsers

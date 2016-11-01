@@ -1,4 +1,4 @@
-﻿namespace clientHelpers {
+﻿namespace ClientHelpers {
     export function getMouseEvent(type: string, options: MouseEventInit) {
         var event = document.createEvent('MouseEvents');
         event.initMouseEvent(
@@ -37,13 +37,24 @@
     }
 
     export function getVisualsRootElements() {
-        return $("div.vcBody > div.visual");
+        return $("div.vcBody > div.visual, html > body.visual-sandbox");
     }
 
     export function getTextWithoutChild(anyElement: HTMLElement | JQuery) {
         return $(anyElement)[0].childNodes[0].textContent;
     }
-    
+
+    export function setTimeoutTry(cb: (...args: any[]) => void, cbCatch: (error) => void, ms: number, ...args: any[]) {
+        var newCb = function() {
+            try {
+                return cb.apply(this, arguments);
+            } catch(ex) {
+                return cbCatch(ex);
+            }
+        };
+        return setTimeout.apply(undefined, [newCb, ms || 0].concat(args || []));
+    }
+
     export function waitUntil(condition: () => boolean, timeoutMs?: number, interval: number = 100) {
         var deffered = $.Deferred();
         var startTime = Date.now();
